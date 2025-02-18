@@ -1,4 +1,4 @@
-class TemperatureConverter(
+data class TemperatureConverter(
     var temperatureInKelvin: Double,
     var temperatureInCelsius: Double,
     var temperatureInFahrenheit: Double
@@ -7,7 +7,8 @@ class TemperatureConverter(
 
     companion object {
 
-        fun addTemperature(temperatureKelvinOrFahrenheit: Double) {
+        //this will assume it is a room or a weather temperature, accepts only Fahrenheit or Kelvin
+        fun addTemperature(temperatureKelvinOrFahrenheit: Double): TemperatureConverter {
             var tempInKel: Double
             var tempInCel: Double
             var tempInFah: Double
@@ -20,8 +21,7 @@ class TemperatureConverter(
                 tempInCel = fromFahrenheitToCelsius(tempInFah)
                 tempInKel = fromCelsiusToKelvin(tempInCel)
             }
-            TemperatureConverter(tempInKel, tempInCel, tempInFah)
-            println("in kelvin $tempInKel, in cel $tempInCel, in fah $tempInFah")
+            return TemperatureConverter(tempInKel, tempInCel, tempInFah)
         }
 
         fun fromCelsiusToFahrenheit(temperature: Double): Double {
